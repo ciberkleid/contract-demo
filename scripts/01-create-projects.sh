@@ -4,6 +4,10 @@ if [ -z "$CONTRACT_DEMO_HOME" ]; then
   return
 fi
 
+# Set git commit message to the name of the current script
+current_script_name=`basename ${BASH_SOURCE}`
+export CONTRACT_DEMO_GIT_COMMIT_MESSAGE=${current_script_name%.*}
+
 # Use Spring Initializr to create producer app
 
 pushd ${CONTRACT_DEMO_HOME}
@@ -16,7 +20,7 @@ echo "# simple-producer" >> simple-producer/README.md
 pushd simple-producer
 git init
 git add .
-git commit -m "first commit"
+git commit -m "${CONTRACT_DEMO_GIT_COMMIT_MESSAGE}"
 popd
 
 # Use Spring Initializr to create consumer app
@@ -29,7 +33,7 @@ echo "# simple-consumer" >> simple-consumer/README.md
 pushd simple-consumer
 git init
 git add .
-git commit -m "first commit"
+git commit -m "${CONTRACT_DEMO_GIT_COMMIT_MESSAGE}"
 popd
 
 popd

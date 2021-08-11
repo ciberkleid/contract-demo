@@ -4,6 +4,10 @@ if [ -z "$CONTRACT_DEMO_HOME" ]; then
   return
 fi
 
+# Set git commit message to the name of the current script
+current_script_name=`basename ${BASH_SOURCE}`
+export CONTRACT_DEMO_GIT_COMMIT_MESSAGE=${current_script_name%.*}
+
 mkdir -p ${CONTRACT_DEMO_HOME}/simple-consumer/src/main/java/com/example/simpleconsumer/fortune
 mkdir -p ${CONTRACT_DEMO_HOME}/simple-consumer/src/test/java/com/example/simpleconsumer/fortune
 

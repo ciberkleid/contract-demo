@@ -11,7 +11,7 @@ We will then create an API contract to define the interaction between the apps, 
 ## Setup
 
 #### Download scripts & artifacts
-- Create a new home directory for this demo and clone this setup repo into it, as follows:
+- Clone this repo and set environment variables as follows:
 ```shell
 git clone https://github.com/ciberkleid/contract-demo.git
 cd contract-demo

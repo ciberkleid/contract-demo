@@ -1,5 +1,5 @@
-if [ -z "$CONTRACT_DEMO_HOME" ]; then
-  echo "Error running script: env var CONTRACT_DEMO_HOME is not set"
+if [ -z "$CONTRACT_DEMO_WORKSPACE" ]; then
+  echo "Error running script: env var CONTRACT_DEMO_WORKSPACE is not set"
   echo "Please follow the directions in the README for https://github.com/ciberkleid/contract-demo-setup"
   return
 fi
@@ -8,7 +8,7 @@ fi
 current_script_name=`basename ${BASH_SOURCE}`
 export CONTRACT_DEMO_GIT_COMMIT_MESSAGE=${current_script_name%.*}
 
-cp ${CONTRACT_DEMO_HOME}/contract-demo-setup/artifacts/simple-producer/src/main/java/com/example/simpleproducer/fortune/FortuneController-delta1.java ${CONTRACT_DEMO_HOME}/simple-producer/src/main/java/com/example/simpleproducer/fortune/FortuneController.java
+cp ${CONTRACT_DEMO_WORKSPACE}/contract-demo-setup/artifacts/simple-producer/src/main/java/com/example/simpleproducer/fortune/FortuneController-delta1.java ${CONTRACT_DEMO_WORKSPACE}/simple-producer/src/main/java/com/example/simpleproducer/fortune/FortuneController.java
 
 echo ""
 echo "SUCCESS: simple-producer satisfies the updated contract"

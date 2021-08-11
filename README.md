@@ -13,10 +13,11 @@ We will then create an API contract to define the interaction between the apps, 
 #### Download scripts & artifacts
 - Create a new home directory for this demo and clone this setup repo into it, as follows:
 ```shell
-mkdir contract-demo
+git clone https://github.com/ciberkleid/contract-demo.git
 cd contract-demo
-export CONTRACT_DEMO_HOME=`echo $PWD`
-git clone https://github.com/ciberkleid/contract-demo-setup.git
+mkdir workspace
+CONTRACT_DEMO_SCRIPTS=`echo $PWD/scripts`
+CONTRACT_DEMO_WORKSPACE=`echo $PWD/workspace`
 ```
 
 ## Steps
@@ -25,7 +26,7 @@ git clone https://github.com/ciberkleid/contract-demo-setup.git
 - Create the consumer and producer projects by running the following script.
 The script uses [Spring Initializr](https://start.spring.io) to generate the projects.
 ```shell
-source contract-demo-setup/scripts/01-create-projects.sh
+source $CONTRACT_DEMO_SCRIPTS/01-create-projects.sh
 ```
 
 - What happened? You should see two new project directories, each with a new Spring Boot web application.
@@ -34,7 +35,7 @@ source contract-demo-setup/scripts/01-create-projects.sh
 Each project has also been initialized as a local git repository so that you can easily see the changes between steps.
 Run the following script to see the results of `git-status` and `git-diff` for each.
 ```shell
-source contract-demo-setup/scripts/git_changes.sh
+source $CONTRACT_DEMO_SCRIPTS/git_changes.sh
 ```
 
 At this point, the status of both should be `nothing to commit, working tree clean` and there should be no `diff` results.
@@ -43,7 +44,7 @@ At this point, the status of both should be `nothing to commit, working tree cle
 - To simulate an API contract being suggested ("driven") by the consumer and accepted by the producer, we will copy a contract to the producer project (in a more formal scenario, this might entail a pull request by a consumer that is evaluated and accepted by a producer).
 To accomplish this, run the following script:
 ```shell
-source contract-demo-setup/scripts/02-create-contract.sh
+source $CONTRACT_DEMO_SCRIPTS/02-create-contract.sh
 ```
 - What happened? Notice that a new file has been added to the simple-producer project in a location that is compliant with Spring Cloud Contract convention.
   This file contains a contract specification written in Groovy.
@@ -54,7 +55,7 @@ Take a moment to understand the contract; it describes a simple get request at t
 
 Commit the changes from this step.
 ```shell
-source contract-demo-setup/scripts/git_commit.sh
+source $CONTRACT_DEMO_SCRIPTS/git_commit.sh
 ```
 
 #### 3. Generate tests and stub (producer)
@@ -62,7 +63,7 @@ source contract-demo-setup/scripts/git_commit.sh
 To do so, it must complete the minimal requirements for the `spring-cloud-contract-maven-plugin` to be able to generate the tests and stubs.
 To accomplish this, run the following script:
 ```shell
-source contract-demo-setup/scripts/03-use-contract--producer.sh
+source $CONTRACT_DEMO_SCRIPTS/03-use-contract--producer.sh
 ```
 - What happened? Three new files were added to `simple-producer`, and a new maven profile configuration was added to the `simple-producer` `pom.xml`.
 These are all used by the `spring-cloud-contract-maven-plugin` to auto-generate contract tests and a stub jar file.
@@ -82,7 +83,7 @@ We will configure simple-consumer to retrieve the stub from the local maven repo
   We will then add a test to simple-consumer that runs against the loaded stub.
 To accomplish this, run the following script:
 ```shell
-source contract-demo-setup/scripts/04-use-contract--consumer.sh
+source $CONTRACT_DEMO_SCRIPTS/04-use-contract--consumer.sh
 ```
 - What happened? We added a simple implementation of a controller and service on the consumer side, as well as a test class that the consumer can use to validate the implementation.
   The test class uses `@AutoConfigureStubRunner` to load the stub, and then tests the implementation against the stub.
@@ -100,7 +101,7 @@ By accepting the pull request, the producer updates the copy of the contract in 
 We will simulate that by updating the copy of the contract in the producer code base.
 To accomplish this, run the following script:
 ```shell
-source contract-demo-setup/scripts/05-update-contract.sh
+source $CONTRACT_DEMO_SCRIPTS/05-update-contract.sh
 ```
 - What happened? The contract was updated, but no other code changes were made.
   New tests are generated based on the updated contract, but the old implementation does not pass the tests.
@@ -114,7 +115,7 @@ Re-run the `git_commit.sh` script to commit the changes from this step.
 - In order to update the producer implementation to comply with the updated contract, we update our controller to respond to calls at "/fortune" rather than "/".
 To accomplish this, run the following script:
 ```shell
-source contract-demo-setup/scripts/06-update-producer.sh
+source $CONTRACT_DEMO_SCRIPTS/06-update-producer.sh
 ```
 - What happened? The updated implementation complies with the new contract, so the auto-generated tests pass.
 
@@ -133,7 +134,7 @@ In order to update the producer implementation to comply with both contracts, we
 We also add a maven profile to do an api-compatibility check using the older contract tests, which we can obtain from the prior version stub jar.
 To accomplish this, run the following script:
 ```shell
-source contract-demo-setup/scripts/07-back-compatibility--producer.sh
+source $CONTRACT_DEMO_SCRIPTS/07-back-compatibility--producer.sh
 ```
 
 Re-run the `git_changes.sh` script to view the changes from this step.
@@ -147,7 +148,7 @@ We then re-run our tests, this time using the new stub (new stub was published t
 Once again, Spring Cloud Contract WireMock modules automatically configure WireMock to load the stub on a specific port in the same process.
 To accomplish this, run the following script:
 ```shell
-source contract-demo-setup/scripts/08-update-consumer.sh
+source $CONTRACT_DEMO_SCRIPTS/08-update-consumer.sh
 ```
 - What happened? We updated the implementation of the consumer's `FortuneService` class and re-ran our tests, this time specifying the `build-2` stubs in the maven command.
 
@@ -162,7 +163,7 @@ Assuming this coordination is achieved, the producer and consumer will still nee
 In order to ensure the consumer is compatible with both contract versions, we test the updated consumer against both build-1 and build-2 stubs, making the necessary code changes to ensure that back-compatibility is maintained.
 To accomplish this, run the following script:
 ```shell
-source contract-demo-setup/scripts/09-back-compatibility--consumer.sh
+source $CONTRACT_DEMO_SCRIPTS/09-back-compatibility--consumer.sh
 ```
 
 Re-run the `git_changes.sh` script to view the changes from this step.

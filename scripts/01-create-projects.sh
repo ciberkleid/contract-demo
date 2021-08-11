@@ -1,5 +1,5 @@
-if [ -z "$CONTRACT_DEMO_HOME" ]; then
-  echo "Error running script: env var CONTRACT_DEMO_HOME is not set"
+if [ -z "$CONTRACT_DEMO_WORKSPACE" ]; then
+  echo "Error running script: env var CONTRACT_DEMO_WORKSPACE is not set"
   echo "Please follow the directions in the README for https://github.com/ciberkleid/contract-demo-setup"
   return
 fi
@@ -10,7 +10,7 @@ export CONTRACT_DEMO_GIT_COMMIT_MESSAGE=${current_script_name%.*}
 
 # Use Spring Initializr to create producer app
 
-pushd ${CONTRACT_DEMO_HOME}
+pushd ${CONTRACT_DEMO_WORKSPACE}
 
 curl -G https://start.spring.io/starter.tgz -d dependencies=web,cloud-contract-verifier -d baseDir=simple-producer | tar -xzvf -
 echo "" >> simple-producer/.gitignore

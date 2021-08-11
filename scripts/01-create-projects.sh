@@ -13,6 +13,11 @@ echo "" >> simple-producer/.gitignore
 echo ".DS_Store" >> simple-producer/.gitignore
 echo "# simple-producer" >> simple-producer/README.md
 
+pushd simple-producer
+git init
+git add .
+git commit -m "first commit"
+popd
 
 # Use Spring Initializr to create consumer app
 
@@ -20,5 +25,11 @@ curl -G https://start.spring.io/starter.tgz -d dependencies=web,cloud-contract-s
 echo "" >> simple-consumer/.gitignore
 echo ".DS_Store" >> simple-consumer/.gitignore
 echo "# simple-consumer" >> simple-consumer/README.md
+
+pushd simple-consumer
+git init
+git add .
+git commit -m "first commit"
+popd
 
 popd

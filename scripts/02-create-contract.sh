@@ -9,7 +9,7 @@ current_script_name=`basename ${BASH_SOURCE}`
 export CONTRACT_DEMO_GIT_COMMIT_MESSAGE=${current_script_name%.*}
 
 mkdir ${CONTRACT_DEMO_WORKSPACE}/simple-producer/src/test/resources/contracts/simple-consumer
-cp ${CONTRACT_DEMO_WORKSPACE}/contract-demo-setup/artifacts/simple-producer/src/test/resources/contracts/simple-consumer/shouldReturnAFortune.groovy ${CONTRACT_DEMO_WORKSPACE}/simple-producer/src/test/resources/contracts/simple-consumer
+cp ${CONTRACT_DEMO_ARTIFACTS}/simple-producer/src/test/resources/contracts/simple-consumer/shouldReturnAFortune.groovy ${CONTRACT_DEMO_WORKSPACE}/simple-producer/src/test/resources/contracts/simple-consumer
 
 echo ""
 echo "SUCCESS: simple-producer project contains contract file"

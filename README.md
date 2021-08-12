@@ -16,8 +16,9 @@ We will then create an API contract to define the interaction between the apps, 
 git clone https://github.com/ciberkleid/contract-demo.git
 cd contract-demo
 mkdir workspace
-CONTRACT_DEMO_SCRIPTS=`echo $PWD/scripts`
-CONTRACT_DEMO_WORKSPACE=`echo $PWD/workspace`
+export CONTRACT_DEMO_SCRIPTS=`echo $PWD/scripts`
+export CONTRACT_DEMO_ARTIFACTS=`echo $PWD/artifacts`
+export CONTRACT_DEMO_WORKSPACE=`echo $PWD/workspace`
 ```
 
 ## Steps

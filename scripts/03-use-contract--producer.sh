@@ -11,10 +11,10 @@ export CONTRACT_DEMO_GIT_COMMIT_MESSAGE=${current_script_name%.*}
 mkdir -p ${CONTRACT_DEMO_WORKSPACE}/simple-producer/src/main/java/com/example/simpleproducer/fortune
 mkdir -p ${CONTRACT_DEMO_WORKSPACE}/simple-producer/src/test/java/com/example/simpleproducer/fortune
 
-cp ${CONTRACT_DEMO_WORKSPACE}/contract-demo-setup/artifacts/simple-producer/src/main/java/com/example/simpleproducer/fortune/FortuneController.java ${CONTRACT_DEMO_WORKSPACE}/simple-producer/src/main/java/com/example/simpleproducer/fortune
-cp ${CONTRACT_DEMO_WORKSPACE}/contract-demo-setup/artifacts/simple-producer/src/main/java/com/example/simpleproducer/fortune/FortuneService.java ${CONTRACT_DEMO_WORKSPACE}/simple-producer/src/main/java/com/example/simpleproducer/fortune
-cp ${CONTRACT_DEMO_WORKSPACE}/contract-demo-setup/artifacts/simple-producer/src/test/java/com/example/simpleproducer/fortune/BaseClass.java ${CONTRACT_DEMO_WORKSPACE}/simple-producer/src/test/java/com/example/simpleproducer/fortune
-cp ${CONTRACT_DEMO_WORKSPACE}/contract-demo-setup/artifacts/simple-producer/pom-delta1.xml ${CONTRACT_DEMO_WORKSPACE}/simple-producer/pom.xml
+cp ${CONTRACT_DEMO_ARTIFACTS}/simple-producer/src/main/java/com/example/simpleproducer/fortune/FortuneController.java ${CONTRACT_DEMO_WORKSPACE}/simple-producer/src/main/java/com/example/simpleproducer/fortune
+cp ${CONTRACT_DEMO_ARTIFACTS}/simple-producer/src/main/java/com/example/simpleproducer/fortune/FortuneService.java ${CONTRACT_DEMO_WORKSPACE}/simple-producer/src/main/java/com/example/simpleproducer/fortune
+cp ${CONTRACT_DEMO_ARTIFACTS}/simple-producer/src/test/java/com/example/simpleproducer/fortune/BaseClass.java ${CONTRACT_DEMO_WORKSPACE}/simple-producer/src/test/java/com/example/simpleproducer/fortune
+cp ${CONTRACT_DEMO_ARTIFACTS}/simple-producer/pom-delta1.xml ${CONTRACT_DEMO_WORKSPACE}/simple-producer/pom.xml
 
 echo ""
 echo "SUCCESS: simple-producer is ready to generate a contract-based stub"

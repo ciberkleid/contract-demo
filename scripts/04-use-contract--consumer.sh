@@ -11,10 +11,10 @@ export CONTRACT_DEMO_GIT_COMMIT_MESSAGE=${current_script_name%.*}
 mkdir -p ${CONTRACT_DEMO_WORKSPACE}/simple-consumer/src/main/java/com/example/simpleconsumer/fortune
 mkdir -p ${CONTRACT_DEMO_WORKSPACE}/simple-consumer/src/test/java/com/example/simpleconsumer/fortune
 
-cp ${CONTRACT_DEMO_WORKSPACE}/contract-demo-setup/artifacts/simple-consumer/src/main/java/com/example/simpleconsumer/fortune/FortuneController.java ${CONTRACT_DEMO_WORKSPACE}/simple-consumer/src/main/java/com/example/simpleconsumer/fortune
-cp ${CONTRACT_DEMO_WORKSPACE}/contract-demo-setup/artifacts/simple-consumer/src/main/java/com/example/simpleconsumer/fortune/FortuneService.java ${CONTRACT_DEMO_WORKSPACE}/simple-consumer/src/main/java/com/example/simpleconsumer/fortune
-cp ${CONTRACT_DEMO_WORKSPACE}/contract-demo-setup/artifacts/simple-consumer/src/main/java/com/example/simpleconsumer/SimpleConsumerApplication.java ${CONTRACT_DEMO_WORKSPACE}/simple-consumer/src/main/java/com/example/simpleconsumer
-cp ${CONTRACT_DEMO_WORKSPACE}/contract-demo-setup/artifacts/simple-consumer/src/test/java/com/example/simpleconsumer/fortune/FortuneServiceTests.java ${CONTRACT_DEMO_WORKSPACE}/simple-consumer/src/test/java/com/example/simpleconsumer/fortune
+cp ${CONTRACT_DEMO_ARTIFACTS}/simple-consumer/src/main/java/com/example/simpleconsumer/fortune/FortuneController.java ${CONTRACT_DEMO_WORKSPACE}/simple-consumer/src/main/java/com/example/simpleconsumer/fortune
+cp ${CONTRACT_DEMO_ARTIFACTS}/simple-consumer/src/main/java/com/example/simpleconsumer/fortune/FortuneService.java ${CONTRACT_DEMO_WORKSPACE}/simple-consumer/src/main/java/com/example/simpleconsumer/fortune
+cp ${CONTRACT_DEMO_ARTIFACTS}/simple-consumer/src/main/java/com/example/simpleconsumer/SimpleConsumerApplication.java ${CONTRACT_DEMO_WORKSPACE}/simple-consumer/src/main/java/com/example/simpleconsumer
+cp ${CONTRACT_DEMO_ARTIFACTS}/simple-consumer/src/test/java/com/example/simpleconsumer/fortune/FortuneServiceTests.java ${CONTRACT_DEMO_WORKSPACE}/simple-consumer/src/test/java/com/example/simpleconsumer/fortune
 
 echo ""
 echo "SUCCESS: simple-consumer is ready to test against contract-based stub"

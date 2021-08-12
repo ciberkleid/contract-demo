@@ -8,7 +8,7 @@ fi
 current_script_name=`basename ${BASH_SOURCE}`
 export CONTRACT_DEMO_GIT_COMMIT_MESSAGE=${current_script_name%.*}
 
-cp ${CONTRACT_DEMO_WORKSPACE}/contract-demo-setup/artifacts/simple-consumer/src/main/java/com/example/simpleconsumer/fortune/FortuneService-delta2.java ${CONTRACT_DEMO_WORKSPACE}/simple-consumer/src/main/java/com/example/simpleconsumer/fortune/FortuneService.java
+cp ${CONTRACT_DEMO_ARTIFACTS}/simple-consumer/src/main/java/com/example/simpleconsumer/fortune/FortuneService-delta2.java ${CONTRACT_DEMO_WORKSPACE}/simple-consumer/src/main/java/com/example/simpleconsumer/fortune/FortuneService.java
 
 echo ""
 echo "SUCCESS: simple-consumer is ready to test against both contract-based stubs"

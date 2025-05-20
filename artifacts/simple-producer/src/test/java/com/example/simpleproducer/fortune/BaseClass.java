@@ -1,14 +1,20 @@
 package com.example.simpleproducer.fortune;
 
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.BDDMockito;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-public class BaseClass {
+@ExtendWith(MockitoExtension.class)
+public abstract class BaseClass {
 
-    @Before
+    @Mock
+    protected FortuneService service;
+
+    @BeforeEach
     public void setup() {
-        FortuneService service = BDDMockito.mock(FortuneService.class);
         BDDMockito.given(service.getFortune()).willReturn("foo fortune");
         RestAssuredMockMvc.standaloneSetup(new FortuneController(service));
     }

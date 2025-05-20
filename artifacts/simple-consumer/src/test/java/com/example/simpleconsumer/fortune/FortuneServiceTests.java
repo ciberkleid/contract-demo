@@ -2,14 +2,14 @@ package com.example.simpleconsumer.fortune;
 
 import com.example.simpleconsumer.SimpleConsumerApplication;
 import org.assertj.core.api.BDDAssertions;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.client.RestTemplate;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = SimpleConsumerApplication.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @AutoConfigureStubRunner
 public class FortuneServiceTests {
@@ -17,7 +17,7 @@ public class FortuneServiceTests {
     FortuneService fortuneService = new FortuneService(new RestTemplate());
 
     @Test
-    public void shouldSendRequestToFortune() {
+    void shouldSendRequestToFortune() {
 
         // Expects system property stubrunner.ids to be set with a single local stub.
         //    e.g. use mvn with:

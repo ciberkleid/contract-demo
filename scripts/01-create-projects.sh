@@ -5,14 +5,29 @@ if [ -z "$CONTRACT_DEMO_WORKSPACE" ]; then
 fi
 
 # Set git commit message to the name of the current script
-current_script_name=`basename ${BASH_SOURCE}`
+current_script_name=$(basename "${BASH_SOURCE[0]:-$0}")
 export CONTRACT_DEMO_GIT_COMMIT_MESSAGE=${current_script_name%.*}
 
 # Use Spring Initializr to create producer app
 
 pushd ${CONTRACT_DEMO_WORKSPACE}
 
-curl -G https://start.spring.io/starter.tgz -d dependencies=web,cloud-contract-verifier -d baseDir=simple-producer -d type=maven-project | tar -xzvf -
+# NOTE: If you change spring init settings here, mirror the changes into artifacts/simple-producer/pom-delta1.xml and artifacts/simple-producer/pom-delta2.xml
+spring init \
+  --build maven \
+  --language java \
+  --boot-version 3.4.5 \
+  --java-version 21 \
+  --packaging jar \
+  --group-id com.example \
+  --artifact-id simple-producer \
+  --name simple-producer \
+  --description "Demo project for Spring Boot" \
+  --package-name com.example.simpleproducer \
+  --dependencies web,cloud-contract-verifier \
+  simple-producer.zip
+
+unzip simple-producer.zip -d simple-producer && rm simple-producer.zip
 echo "" >> simple-producer/.gitignore
 echo ".DS_Store" >> simple-producer/.gitignore
 echo "# simple-producer" >> simple-producer/README.md
@@ -25,7 +40,21 @@ popd
 
 # Use Spring Initializr to create consumer app
 
-curl -G https://start.spring.io/starter.tgz -d dependencies=web,cloud-contract-stub-runner -d baseDir=simple-consumer -d type=maven-project | tar -xzvf -
+spring init \
+  --build maven \
+  --language java \
+  --boot-version 3.4.5 \
+  --java-version 21 \
+  --packaging jar \
+  --group-id com.example \
+  --artifact-id simple-consumer \
+  --name simple-consumer \
+  --description "Demo project for Spring Boot" \
+  --package-name com.example.simpleconsumer \
+  --dependencies web,cloud-contract-stub-runner \
+  simple-consumer.zip
+
+unzip simple-consumer.zip -d simple-consumer && rm simple-consumer.zip
 echo "" >> simple-consumer/.gitignore
 echo ".DS_Store" >> simple-consumer/.gitignore
 echo "# simple-consumer" >> simple-consumer/README.md

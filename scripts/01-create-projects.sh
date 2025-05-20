@@ -12,7 +12,7 @@ export CONTRACT_DEMO_GIT_COMMIT_MESSAGE=${current_script_name%.*}
 
 pushd ${CONTRACT_DEMO_WORKSPACE}
 
-curl -G https://start.spring.io/starter.tgz -d dependencies=web,cloud-contract-verifier -d baseDir=simple-producer | tar -xzvf -
+curl -G https://start.spring.io/starter.tgz -d dependencies=web,cloud-contract-verifier -d baseDir=simple-producer -d type=maven-project | tar -xzvf -
 echo "" >> simple-producer/.gitignore
 echo ".DS_Store" >> simple-producer/.gitignore
 echo "# simple-producer" >> simple-producer/README.md
@@ -25,7 +25,7 @@ popd
 
 # Use Spring Initializr to create consumer app
 
-curl -G https://start.spring.io/starter.tgz -d dependencies=web,cloud-contract-stub-runner -d baseDir=simple-consumer | tar -xzvf -
+curl -G https://start.spring.io/starter.tgz -d dependencies=web,cloud-contract-stub-runner -d baseDir=simple-consumer -d type=maven-project | tar -xzvf -
 echo "" >> simple-consumer/.gitignore
 echo ".DS_Store" >> simple-consumer/.gitignore
 echo "# simple-consumer" >> simple-consumer/README.md

@@ -27,7 +27,7 @@ public abstract class BaseClass {
         – pulls in that auto‑configured MockMvc.
     RestAssuredMockMvc.mockMvc(mockMvc);
         – gives RestAssured the MockMvc to drive; after that, every generated given()… call
-        will “just work” without you ever naming a controller or service.
+        will “just work” without you ever instantiating a controller or service.
      */
 }
 

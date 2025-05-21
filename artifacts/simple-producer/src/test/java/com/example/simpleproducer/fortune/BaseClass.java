@@ -2,20 +2,32 @@ package com.example.simpleproducer.fortune;
 
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.BDDMockito;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.web.context.WebApplicationContext;
 
-@ExtendWith(MockitoExtension.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@AutoConfigureMockMvc
 public abstract class BaseClass {
 
-    @Mock
-    protected FortuneService service;
+    @Autowired
+    private MockMvc mockMvc;
 
     @BeforeEach
     public void setup() {
-        BDDMockito.given(service.getFortune()).willReturn("foo fortune");
-        RestAssuredMockMvc.standaloneSetup(new FortuneController(service));
+        RestAssuredMockMvc.mockMvc(mockMvc);
     }
+
+    /*
+    What this does:
+    @SpringBootTest + @AutoConfigureMockMvc
+        – boots the full Spring context and registers a MockMvc bean with all your controllers.
+    @Autowired MockMvc mockMvc;
+        – pulls in that auto‑configured MockMvc.
+    RestAssuredMockMvc.mockMvc(mockMvc);
+        – gives RestAssured the MockMvc to drive; after that, every generated given()… call
+        will “just work” without you ever naming a controller or service.
+     */
 }
+

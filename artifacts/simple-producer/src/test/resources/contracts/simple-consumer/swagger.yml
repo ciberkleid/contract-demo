@@ -1,0 +1,17 @@
+description: apply validation
+name: apply validation
+request:
+  method: POST
+#  urlPath: /applications/{{{request.path.[1]}}}/validation
+  urlPath: /applications/90871/validation
+  headers:
+    Content-Type: "application/json"
+    X-SYF-Request-TrackingId:
+      optional: true
+      equalTo: "100000001"
+response:
+  status: 200
+  headers:
+    Content-Type: "application/json"
+    X-SYF-Request-TrackingId: "100000001"
+    applicationId: "90871"

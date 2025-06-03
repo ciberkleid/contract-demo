@@ -3,9 +3,9 @@ package com.example.simpleproducer.fortune;
 import org.springframework.stereotype.Service;
 
 @Service
-public class FortuneService {
+class FortuneService {
 
-    public String getFortune() {
+    String getFortune() {
         return "";
     }
 

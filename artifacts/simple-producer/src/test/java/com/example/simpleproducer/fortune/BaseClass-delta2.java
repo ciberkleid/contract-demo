@@ -19,6 +19,9 @@ public abstract class BaseClass {
     @MockitoBean
     protected FortuneService fortuneService;
 
+    @MockitoBean
+    protected ValidationService validationService;
+
     // Let Spring auto‑configure a MockMvc that has all your @RestController
     // beans already wired
     @Autowired
@@ -29,6 +32,9 @@ public abstract class BaseClass {
         // Define the stub behavior once for every generated test
         BDDMockito.given(fortuneService.getFortune())
                 .willReturn("foo fortune");
+
+        BDDMockito.given(validationService.generateTrackingId())
+                .willReturn(String.valueOf(100000001L));
 
         // Point RestAssured at Spring’s MockMvc
         RestAssuredMockMvc.mockMvc(mockMvc);
